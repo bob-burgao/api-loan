@@ -6,7 +6,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.srm.demo.domain.dtos.PessoaDTO;
+import com.srm.demo.adapters.controllers.mappers.CriarPessoaMapper;
+import com.srm.demo.adapters.controllers.models.RequestCriarPessoa;
+import com.srm.demo.adapters.controllers.models.ResponseCriarPessoa;
 import com.srm.demo.domain.ports.inputs.CriarPessoaPortInput;
 
 
@@ -15,10 +17,13 @@ import com.srm.demo.domain.ports.inputs.CriarPessoaPortInput;
 public class PessoaController {
 
     private CriarPessoaPortInput criarPessoa;
+    private CriarPessoaMapper criarPessoaMapper;
 
     @PostMapping
-    public PessoaDTO criarPessoa(@RequestBody PessoaDTO pessoa){
-        return criarPessoa.executar(pessoa);
+    public ResponseCriarPessoa criarPessoa(@RequestBody RequestCriarPessoa pessoa){
+        return criarPessoaMapper.response(
+            criarPessoa.executar(criarPessoaMapper.request(pessoa))
+        );
     }
 
     @GetMapping
