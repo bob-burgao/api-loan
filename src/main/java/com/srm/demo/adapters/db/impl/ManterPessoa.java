@@ -3,7 +3,6 @@ package com.srm.demo.adapters.db.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.srm.demo.adapters.db.entities.Pessoa;
 import com.srm.demo.adapters.db.mappers.DtoToEntityMapper;
 import com.srm.demo.adapters.db.mappers.EntityToDtoMapper;
 import com.srm.demo.adapters.db.repositories.PessoaRepository;

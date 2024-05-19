@@ -1,6 +1,5 @@
 package com.srm.demo.domain.usecases.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.srm.demo.domain.dtos.PessoaDTO;
