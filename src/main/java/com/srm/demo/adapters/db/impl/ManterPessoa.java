@@ -25,5 +25,12 @@ public class ManterPessoa implements ManterPessoaPortOutput{
             pessoaRepository.save(dtoToEntityMapper.newPessoa(pessoa))
         );
     }
+
+    @Override
+    public PessoaDTO findByIdentificador(String identificador) {
+        return entityToDtoMapper.convert(
+            pessoaRepository.findIdByIdentificador(identificador)
+        );
+    }
     
 }

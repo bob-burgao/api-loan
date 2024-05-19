@@ -19,6 +19,8 @@ public class EntityToDtoMapper {
         .tipoIdentificador(TipoIdentificadorEnum.valueOf(pessoa.getTipoIdentificador()))
         .valorMinMensal(pessoa.getValorMinMensal())
         .valorMaxEmprestimo(pessoa.getValorMaxEmprestimo())
+        .emprestimos(pessoa.getEmprestimos().stream().map(
+            emprestimo -> convert(emprestimo)).toList())
         .build();
     }
 

@@ -8,4 +8,5 @@ import com.srm.demo.adapters.db.entities.Pessoa;
 @Repository
 public interface PessoaRepository extends JpaRepository<Pessoa, Long>{
     
+    Pessoa findIdByIdentificador(String identificador);
 }
