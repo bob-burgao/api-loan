@@ -7,7 +7,7 @@ import com.srm.demo.domain.dtos.PessoaDTO;
 import com.srm.demo.domain.dtos.ValoresDTO;
 import com.srm.demo.domain.exceptions.UnexpectedErrorException;
 import com.srm.demo.domain.ports.inputs.CriarPessoaPortInput;
-import com.srm.demo.domain.ports.outputs.CriarPessoaPortOutput;
+import com.srm.demo.domain.ports.outputs.ManterPessoaPortOutput;
 import com.srm.demo.domain.usecases.GetTipoIdentificador;
 import com.srm.demo.domain.usecases.GetValores;
 
@@ -19,7 +19,7 @@ public class CriarPessoaService implements CriarPessoaPortInput{
     @Autowired
     private GetValores getValores;
     @Autowired
-    private CriarPessoaPortOutput criarPessoaPortOutput;
+    private ManterPessoaPortOutput manterPessoa;
 
     @Override
     public PessoaDTO executar(PessoaDTO pessoa) {
@@ -32,7 +32,7 @@ public class CriarPessoaService implements CriarPessoaPortInput{
 
 
         try {
-            return criarPessoaPortOutput.executar(pessoa);
+            return manterPessoa.criar(pessoa);
         } catch (Exception e) {
             throw new UnexpectedErrorException("Erro ao registrar nova pessoa", e);
         }
