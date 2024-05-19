@@ -7,10 +7,10 @@ import com.srm.demo.adapters.db.mappers.DtoToEntityMapper;
 import com.srm.demo.adapters.db.mappers.EntityToDtoMapper;
 import com.srm.demo.adapters.db.repositories.EmprestimoRepository;
 import com.srm.demo.domain.dtos.EmprestimoDTO;
-import com.srm.demo.domain.ports.outputs.CriarEmprestimoPortOutput;
+import com.srm.demo.domain.ports.outputs.ManterEmprestimoPortOutput;
 
 @Component
-public class RegistrarEmprestimoImpl implements CriarEmprestimoPortOutput{
+public class RegistrarEmprestimoImpl implements ManterEmprestimoPortOutput{
 
     @Autowired
     private EmprestimoRepository emprestimoRepository;

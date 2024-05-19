@@ -16,7 +16,7 @@ import com.srm.demo.domain.exceptions.BusinessRoleException;
 import com.srm.demo.domain.exceptions.DataNotFoundException;
 import com.srm.demo.domain.exceptions.UnexpectedErrorException;
 import com.srm.demo.domain.ports.inputs.SolicitarEmprestimoPortInput;
-import com.srm.demo.domain.ports.outputs.CriarEmprestimoPortOutput;
+import com.srm.demo.domain.ports.outputs.ManterEmprestimoPortOutput;
 import com.srm.demo.domain.ports.outputs.ManterPessoaPortOutput;
 import com.srm.demo.domain.usecases.ValidarDocumentoUseCase;
 
@@ -26,7 +26,7 @@ public class SolicitarEmprestimoService implements SolicitarEmprestimoPortInput{
     private Logger logger = LogManager.getLogger(SolicitarEmprestimoService.class);
 
     @Autowired
-    private CriarEmprestimoPortOutput criarEmprestimoPortOutput;
+    private ManterEmprestimoPortOutput manterEmprestimoPortOutput;
     @Autowired
     private ManterPessoaPortOutput manterPessoaPortOutput;
     @Autowired
@@ -65,7 +65,7 @@ public class SolicitarEmprestimoService implements SolicitarEmprestimoPortInput{
         .build();
 
         try {
-            return criarEmprestimoPortOutput.save(emprestimoDTO);
+            return manterEmprestimoPortOutput.save(emprestimoDTO);
         } catch (Exception e) {
             logger.error(e.getMessage());
              throw new UnexpectedErrorException("Erro inesperado ao salvar o emprestimo", e);
