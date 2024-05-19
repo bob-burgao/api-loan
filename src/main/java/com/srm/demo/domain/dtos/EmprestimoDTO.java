@@ -15,8 +15,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EmprestimoDTO {
-    private Integer id;
-    private Integer pessoaId;
+    private Long id;
+    private Long pessoaId;
     private BigDecimal valorEmprestimo;
     private Integer numeroParcelas;
     private StatusPagamento statusPagamento;

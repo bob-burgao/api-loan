@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ResponseEmprestimo {
-    private Integer id;
+    private Long id;
     private BigDecimal valorEmprestimo;
     private Integer numeroParcelas;
     private String statusPagamento;
