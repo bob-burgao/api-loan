@@ -38,7 +38,7 @@ public class Pessoa {
     private LocalDate dataNascimento;
 
     @Column(name = "tipo_identificador")
-    private TipoIdentificador tipoIdentificador;
+    private String tipoIdentificador;
 
     @Column(name = "valor_min_mensal")
     private BigDecimal valorMinMensal;
