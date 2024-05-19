@@ -2,7 +2,7 @@ package com.srm.demo.domain.dtos;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.List;
 
 import com.srm.demo.domain.enums.TipoIdentificadorEnum;
 
@@ -22,5 +22,5 @@ public class PessoaDTO {
     private TipoIdentificadorEnum tipoIdentificador;
     private BigDecimal valorMinMensal;
     private BigDecimal valorMaxEmprestimo;
-    private ArrayList<EmprestimoDTO> emprestimos;
+    private List<EmprestimoDTO> emprestimos;
 }
