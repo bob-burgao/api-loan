@@ -3,6 +3,8 @@ package com.srm.demo.domain.services;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,6 +15,8 @@ import com.srm.demo.domain.ports.outputs.CriarEmprestimoPortOutput;
 
 @Component
 public class SolicitarEmprestimoService implements SolicitarEmprestimoPortInput{
+
+    private Logger logger = LogManager.getLogger(SolicitarEmprestimoService.class);
 
     @Autowired
     private CriarEmprestimoPortOutput criarEmprestimoPortOutput;
