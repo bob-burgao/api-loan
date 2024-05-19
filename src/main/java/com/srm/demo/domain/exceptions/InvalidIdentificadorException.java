@@ -6,4 +6,8 @@ public class InvalidIdentificadorException extends RuntimeException {
         super("Identificador inválido");
     }
 
+    public InvalidIdentificadorException(String message) {
+        super(message);
+    }
+
 }

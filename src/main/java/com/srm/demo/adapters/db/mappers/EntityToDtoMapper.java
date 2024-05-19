@@ -14,7 +14,11 @@ import com.srm.demo.domain.enums.TipoIdentificadorEnum;
 @Component
 public class EntityToDtoMapper {
     public PessoaDTO convert(Pessoa pessoa) {
+        if (pessoa == null) {
+            return null;
+        }
         return PessoaDTO.builder()
+        .id(pessoa.getId())
         .nome(pessoa.getNome())
         .identificador(pessoa.getIdentificador())
         .dataNascimento(pessoa.getDataNascimento())
@@ -27,6 +31,9 @@ public class EntityToDtoMapper {
     }
 
     public EmprestimoDTO convert(Emprestimo emprestimo) {
+        if (emprestimo == null) {
+            return null;
+        }
         return EmprestimoDTO.builder()
         .id(emprestimo.getId())
         .pessoaId(emprestimo.getPessoa().getId())

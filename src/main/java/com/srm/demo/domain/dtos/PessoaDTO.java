@@ -16,6 +16,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PessoaDTO {
+    private Long id;
     private String nome;
     private String identificador;
     private LocalDate dataNascimento;
