@@ -8,6 +8,7 @@ CREATE TABLE pessoa (
     valor_max_emprestimo decimal(18,4) NOT NULL
 );
 alter table pessoa add constraint pk_pessoa PRIMARY KEY (id);
+alter table pessoa add constraint uk_pessoa UNIQUE (identificador);
 
 
 CREATE TABLE emprestimo (

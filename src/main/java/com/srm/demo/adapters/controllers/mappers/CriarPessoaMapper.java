@@ -22,7 +22,7 @@ public class CriarPessoaMapper {
         .nome(pessoa.getNome())
         .identificador(pessoa.getIdentificador())
         .dataNascimento(pessoa.getDataNascimento())
-        .tipoIdentificador(pessoa.getIdentificador())
+        .tipoIdentificador(pessoa.getTipoIdentificador().name())
         .valorMinMensal(pessoa.getValorMinMensal())
         .valorMaxEmprestimo(pessoa.getValorMaxEmprestimo())
         .build();

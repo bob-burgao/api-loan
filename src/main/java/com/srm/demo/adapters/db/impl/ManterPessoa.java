@@ -1,5 +1,6 @@
 package com.srm.demo.adapters.db.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.srm.demo.adapters.db.mappers.DtoToEntityMapper;
@@ -11,8 +12,11 @@ import com.srm.demo.domain.ports.outputs.CriarPessoaPortOutput;
 @Component
 public class ManterPessoa implements CriarPessoaPortOutput{
 
+    @Autowired
     private PessoaRepository pessoaRepository;
+    @Autowired
     private DtoToEntityMapper dtoToEntityMapper;
+    @Autowired
     private EntityToDtoMapper entityToDtoMapper;
 
     @Override

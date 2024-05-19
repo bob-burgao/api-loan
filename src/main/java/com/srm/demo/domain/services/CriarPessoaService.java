@@ -1,24 +1,41 @@
 package com.srm.demo.domain.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.srm.demo.domain.dtos.PessoaDTO;
+import com.srm.demo.domain.dtos.ValoresDTO;
+import com.srm.demo.domain.exceptions.UnexpectedErrorException;
 import com.srm.demo.domain.ports.inputs.CriarPessoaPortInput;
+import com.srm.demo.domain.ports.outputs.CriarPessoaPortOutput;
 import com.srm.demo.domain.usecases.GetTipoIdentificador;
+import com.srm.demo.domain.usecases.GetValores;
 
 @Component
 public class CriarPessoaService implements CriarPessoaPortInput{
 
+    @Autowired
     private GetTipoIdentificador getTipoIdentificador;
+    @Autowired
+    private GetValores getValores;
+    @Autowired
+    private CriarPessoaPortOutput criarPessoaPortOutput;
 
     @Override
     public PessoaDTO executar(PessoaDTO pessoa) {
 
         pessoa.setTipoIdentificador(getTipoIdentificador.get(pessoa.getIdentificador()));
 
+        final ValoresDTO valores = getValores.get(pessoa.getTipoIdentificador());
+        pessoa.setValorMaxEmprestimo(valores.getValorMaxEmprestimo());
+        pessoa.setValorMinMensal(valores.getValorMinMensal());
 
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'executar'");
+
+        try {
+            return criarPessoaPortOutput.executar(pessoa);
+        } catch (Exception e) {
+            throw new UnexpectedErrorException("Erro ao registrar nova pessoa", e);
+        }
     }
     
     
