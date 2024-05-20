@@ -21,8 +21,8 @@ Desafio SRM
 
 ## Arquitetura (Hexagonal)
 
-![image info](docs\hex-ports-adapters.svg)
+![image info](docs/hex-ports-adapters.svg)
 
 ## Collection (Postman)
 
-[Download](file:///docs/Desafio_LOAN.postman_collection.json)
+[Download](docs/Desafio_LOAN.postman_collection.json)
