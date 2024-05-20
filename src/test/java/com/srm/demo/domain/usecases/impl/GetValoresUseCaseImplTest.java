@@ -1,7 +1,6 @@
 package com.srm.demo.domain.usecases.impl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.math.BigDecimal;
 
