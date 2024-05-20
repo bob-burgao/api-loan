@@ -5,10 +5,10 @@ import org.springframework.stereotype.Component;
 import com.srm.demo.domain.enums.TipoIdentificadorEnum;
 import com.srm.demo.domain.exceptions.InvalidIdentificadorException;
 import com.srm.demo.domain.exceptions.RequiredParamsNotFoundException;
-import com.srm.demo.domain.usecases.GetTipoIdentificador;
+import com.srm.demo.domain.usecases.GetTipoIdentificadorUseCase;
 
 @Component
-public class GetTipoIdentificadorImpl implements GetTipoIdentificador{
+public class GetTipoIdentificadorUseCaseImpl implements GetTipoIdentificadorUseCase{
 
     @Override
     public TipoIdentificadorEnum get(String identificador) {

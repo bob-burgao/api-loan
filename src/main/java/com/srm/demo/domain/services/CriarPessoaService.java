@@ -10,16 +10,16 @@ import com.srm.demo.domain.dtos.ValoresDTO;
 import com.srm.demo.domain.exceptions.UnexpectedErrorException;
 import com.srm.demo.domain.ports.inputs.CriarPessoaPortInput;
 import com.srm.demo.domain.ports.outputs.ManterPessoaPortOutput;
-import com.srm.demo.domain.usecases.GetTipoIdentificador;
-import com.srm.demo.domain.usecases.GetValores;
+import com.srm.demo.domain.usecases.GetTipoIdentificadorUseCase;
+import com.srm.demo.domain.usecases.GetValoresUseCase;
 
 @Component
 public class CriarPessoaService implements CriarPessoaPortInput{
 
     @Autowired
-    private GetTipoIdentificador getTipoIdentificador;
+    private GetTipoIdentificadorUseCase getTipoIdentificador;
     @Autowired
-    private GetValores getValores;
+    private GetValoresUseCase getValores;
     @Autowired
     private ManterPessoaPortOutput manterPessoa;
 

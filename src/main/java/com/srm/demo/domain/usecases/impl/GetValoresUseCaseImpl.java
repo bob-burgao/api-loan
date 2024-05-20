@@ -6,10 +6,10 @@ import org.springframework.stereotype.Component;
 
 import com.srm.demo.domain.dtos.ValoresDTO;
 import com.srm.demo.domain.enums.TipoIdentificadorEnum;
-import com.srm.demo.domain.usecases.GetValores;
+import com.srm.demo.domain.usecases.GetValoresUseCase;
 
 @Component
-public class GetValoresImpl implements GetValores{
+public class GetValoresUseCaseImpl implements GetValoresUseCase{
 
     @Override
     public ValoresDTO get(TipoIdentificadorEnum tipoIdentificador) {
