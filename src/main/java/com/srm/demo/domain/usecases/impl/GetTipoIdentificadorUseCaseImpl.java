@@ -12,7 +12,7 @@ public class GetTipoIdentificadorUseCaseImpl implements GetTipoIdentificadorUseC
 
     @Override
     public TipoIdentificadorEnum get(String identificador) {
-        if (identificador == null) {
+        if (identificador == null || identificador.isEmpty()) {
             throw new RequiredParamsNotFoundException("idenficador");
         }
 
