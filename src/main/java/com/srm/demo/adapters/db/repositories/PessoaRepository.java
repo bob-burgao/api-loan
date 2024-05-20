@@ -11,6 +11,6 @@ public interface PessoaRepository extends JpaRepository<Pessoa, Long>{
     
     Pessoa findIdByIdentificador(String identificador);
 
-    @Query("SELECT p from Pessoa p join fetch p.emprestimos e where e.statusPagamento = :status and p.identificador = :identificador")
+    @Query("SELECT p FROM Pessoa p LEFT JOIN p.emprestimos e ON p.id = e.pessoa.id AND e.statusPagamento=:status WHERE p.identificador = :identificador")
     Pessoa findOneByIdentificadorAndEmpretimoStatus(String identificador, String status);
 }
