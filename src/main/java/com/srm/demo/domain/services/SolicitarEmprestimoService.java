@@ -1,7 +1,6 @@
 package com.srm.demo.domain.services;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.time.LocalDateTime;
 
 import org.apache.logging.log4j.LogManager;
@@ -18,7 +17,9 @@ import com.srm.demo.domain.exceptions.UnexpectedErrorException;
 import com.srm.demo.domain.ports.inputs.SolicitarEmprestimoPortInput;
 import com.srm.demo.domain.ports.outputs.ManterEmprestimoPortOutput;
 import com.srm.demo.domain.ports.outputs.ManterPessoaPortOutput;
+import com.srm.demo.domain.usecases.GetLimiteEmprestimoUseCase;
 import com.srm.demo.domain.usecases.ValidarDocumentoUseCase;
+import com.srm.demo.domain.usecases.ValidarValorParcelaUseCase;
 
 @Component
 public class SolicitarEmprestimoService implements SolicitarEmprestimoPortInput{
@@ -31,6 +32,10 @@ public class SolicitarEmprestimoService implements SolicitarEmprestimoPortInput{
     private ManterPessoaPortOutput manterPessoaPortOutput;
     @Autowired
     private ValidarDocumentoUseCase validarDocumentoUseCase;
+    @Autowired
+    private GetLimiteEmprestimoUseCase getLimiteEmprestimoUseCase;
+    @Autowired
+    private ValidarValorParcelaUseCase validarValorParcelaUseCase;
 
     @Override
     public EmprestimoDTO exec(String identificarPessoa, BigDecimal valor, int parcelas) {
@@ -47,12 +52,12 @@ public class SolicitarEmprestimoService implements SolicitarEmprestimoPortInput{
             throw new BusinessRoleException("A quantidade de parcelas não pode ser superior a 24");
         }
 
-        final BigDecimal limiteRestante = getLimiteEmprestimo(pessoa);
+        final BigDecimal limiteRestante = getLimiteEmprestimoUseCase.exec(pessoa);
         if (limiteRestante.subtract(valor).compareTo(BigDecimal.ZERO) < 0) {
             throw new BusinessRoleException("Valor limite excedido: " + limiteRestante);
         }
 
-        if (!isParcelaPermitida(pessoa.getValorMinMensal(), valor, parcelas)) {
+        if (!validarValorParcelaUseCase.exec(pessoa.getValorMinMensal(), valor, parcelas)) {
             throw new BusinessRoleException("Valor da parcela menor que o mínimo permitido: " + pessoa.getValorMinMensal());
         }
 
@@ -70,23 +75,6 @@ public class SolicitarEmprestimoService implements SolicitarEmprestimoPortInput{
             logger.error(e.getMessage());
              throw new UnexpectedErrorException("Erro inesperado ao salvar o emprestimo", e);
         }
-    }
-
-    private BigDecimal getLimiteEmprestimo(PessoaDTO pessoa) {
-        BigDecimal totalSolicitado = pessoa.getEmprestimos().stream()
-            .map(EmprestimoDTO::getValorEmprestimo)
-            .reduce(BigDecimal.ZERO, BigDecimal::add);
-            
-        return pessoa.getValorMaxEmprestimo().subtract(totalSolicitado);
-    }
-
-    private boolean isParcelaPermitida(BigDecimal valorMinMensal, BigDecimal valor, int parcelas) {
-        final BigDecimal qtdParcelas = BigDecimal.valueOf(parcelas);
-        final BigDecimal valorParcela = valor.divide(qtdParcelas, 4, RoundingMode.HALF_UP);
-        if (valorParcela.compareTo(valorMinMensal) >= 0) {
-            return true;
-        }
-        return false;
     }
 
 }

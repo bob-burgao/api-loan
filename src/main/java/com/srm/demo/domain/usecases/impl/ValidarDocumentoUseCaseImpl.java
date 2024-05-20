@@ -47,7 +47,6 @@ public class ValidarDocumentoUseCaseImpl implements ValidarDocumentoUseCase{
                 if (!isAposentadoValid(pessoa.getIdentificador())) {
                     throw new InvalidIdentificadorException("Aposentado inválido: " + pessoa.getIdentificador());
                 }
-                isAposentadoValid(pessoa.getIdentificador());
                 break;
             }
         
@@ -59,8 +58,8 @@ public class ValidarDocumentoUseCaseImpl implements ValidarDocumentoUseCase{
 
     private boolean isEstudadeValid(String identificador) {
         if (identificador.length() == 8) {
-            final int firstNumber = identificador.charAt(0);
-            final int lastNumber = identificador.charAt(7);
+            final int firstNumber = Character.getNumericValue(identificador.charAt(0));
+            final int lastNumber = Character.getNumericValue(identificador.charAt(7));
             if (firstNumber + lastNumber != 9) {
                 return false;
             }
@@ -72,7 +71,7 @@ public class ValidarDocumentoUseCaseImpl implements ValidarDocumentoUseCase{
 
     private boolean isAposentadoValid(String identificador) {
         if (identificador.length() == 10) {
-            final String partId = identificador.substring(0, 8);
+            final String partId = identificador.substring(0, 9);
             final char lastNumber = identificador.charAt(9);
             if (partId.contains(String.valueOf(lastNumber))) {
                 return false;
